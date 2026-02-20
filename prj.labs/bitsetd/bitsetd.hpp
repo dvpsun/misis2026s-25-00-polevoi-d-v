@@ -11,8 +11,8 @@ class BitsetD {
 public:
   BitsetD() = default;
   BitsetD(const BitsetD& src);
-  BitsetD(const std::uint64_t mask, const int32_t size);
-  BitsetD(const int32_t size, const bool val = false);
+  BitsetD(const std::uint64_t mask, const int32_t size = 64);
+  BitsetD(const int32_t size, const bool val);
   ~BitsetD() = default;
   BitsetD& operator=(const BitsetD& rhs) = default; // TODO:shrink if size small
 
