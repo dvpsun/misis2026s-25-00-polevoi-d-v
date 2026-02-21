@@ -71,3 +71,13 @@ TEST_CASE("[bitsetd] - op[]") {
   BitsetD b33(0xAAAABBBBCCCCDDDDUL, 33);
   CHECK(33 == b33.size());
 }
+
+TEST_CASE("[bitsetd] - op[] const") {
+  const uint64_t bits = static_cast<uint64_t>(0b1010'0101'1111'0000);
+  uint64_t mask = 1;
+  const BitsetD b1(bits);
+  for (int32_t i = 0; i < sizeof(bits) * 8; i += 1) {
+    CHECK(b1[i] == bool(bits & mask));
+    mask <<= 1;
+  }
+}

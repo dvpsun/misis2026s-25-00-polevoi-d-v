@@ -34,3 +34,7 @@ void BitsetD::set(const std::int32_t idx, const bool val) {
     bits_[idx / 32] &= ~(UINT32_C(1) << idx % 32);
   }
 }
+
+BitsetD& BitsetD::invert() noexcept {
+  return *this;
+}

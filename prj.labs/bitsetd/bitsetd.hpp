@@ -28,15 +28,14 @@ public:
     BitProxC(const BitProxC&) = delete;
     ~BitProxC() = default;
     BitProxC& operator=(const BitProxC&) = delete;
-    BitProxC(const BitsetD& bs, const int32_t idx) : bs_(bs), idx_(idx) {}
-    operator bool() const { return bs_.get(idx_); }
+    BitProxC(const BitsetD& bs, const int32_t idx) : val_(bs.get(idx)) {}
+    operator bool() const { return val_; }
   private:
-    const BitsetD& bs_;
-    const int32_t idx_ = 0;
+    bool val_ = false;
   };
 public:
   BitsetD() = default;
-  BitsetD(const BitsetD& src);
+  BitsetD(const BitsetD& src) = default;
   BitsetD(const std::uint64_t mask, const int32_t size = 64);
   BitsetD(const int32_t size, const bool val);
   ~BitsetD() = default;
@@ -52,7 +51,7 @@ public:
 
   bool operator==(const BitsetD& rhs) noexcept;
 
-  void invert() noexcept;
+  BitsetD& invert() noexcept;
   void fill(const bool val) noexcept;
   BitsetD& shift(const std::int32_t idx) noexcept;
   BitsetD& operator<<=(const std::int32_t shift);
@@ -66,7 +65,7 @@ private:
 };
 
 
-BitsetD operator~(const BitsetD& rhs) noexcept;
+inline BitsetD operator~(const BitsetD& rhs) noexcept { return BitsetD(rhs).invert(); }
 
 BitsetD operator<<(const BitsetD& lhs, const std::int32_t shift);
 
