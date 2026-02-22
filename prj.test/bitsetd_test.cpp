@@ -73,11 +73,12 @@ TEST_CASE("[bitsetd] - op[]") {
 }
 
 TEST_CASE("[bitsetd] - op[] const") {
-  const uint64_t bits = static_cast<uint64_t>(0b1010'0101'1111'0000);
-  uint64_t mask = 1;
+  uint64_t mask = 1ull;
+  const auto bits = 0b0101'1010'1111'0000ull;
   const BitsetD b1(bits);
   for (int32_t i = 0; i < sizeof(bits) * 8; i += 1) {
     CHECK(b1[i] == bool(bits & mask));
+    std::cout << b1[i] << std::endl;
     mask <<= 1;
   }
 }
