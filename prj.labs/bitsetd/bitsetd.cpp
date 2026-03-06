@@ -36,5 +36,8 @@ void BitsetD::set(const std::int32_t idx, const bool val) {
 }
 
 BitsetD& BitsetD::invert() noexcept {
+  for (auto& bits : bits_) {
+    bits = ~bits;
+  }
   return *this;
 }

@@ -1,4 +1,4 @@
-// 2026 by Dmitrconsty Polevoy 
+// 2026 by Dmitry Polevoy 
 
 #pragma once
 #ifndef BITSETD_BITSETD_HPP_20260214
@@ -12,7 +12,7 @@ public:
   class BitR {
     friend class BitsetD;
   public:
-    operator bool() const { return val_; }
+    operator bool() const noexcept { return val_; }
   private:
     BitR() = delete;
     BitR(const BitR&) = delete;
@@ -28,11 +28,10 @@ public:
   class BitW {
     friend class BitsetD;
   public:
-    void operator=(const BitW& rhs) { bs_.set(idx_, rhs.operator bool()); }
-    //void operator=(BitW&& rhs) { bs_.set(idx_, rhs.operator bool()); }
-    void operator=(const BitR& rhs) { bs_.set(idx_, rhs.operator bool()); }
-    operator bool() const { return bs_.get(idx_); }
-    void operator=(const bool val) { bs_.set(idx_, val); }
+    operator bool() const noexcept { return bs_.get(idx_); }
+    void operator=(const bool val) noexcept { bs_.set(idx_, val); }
+    void operator=(const BitW& rhs) noexcept { operator=(rhs.operator bool()); }
+    void operator=(BitW&& rhs) noexcept { operator=(rhs.operator bool()); }
   private:
     BitW(BitsetD& bs, const int32_t idx) : bs_(bs), idx_(idx) {}
     BitW() = delete;
