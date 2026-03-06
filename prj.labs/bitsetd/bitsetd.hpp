@@ -7,12 +7,6 @@
 #include <cstdint>
 #include <vector>
 
-class BitsetD;
-
-//namespace std {
-//  void swap(BitsetD::BitW&& lhs, BitsetD::BitW&& rhs);
-//}
-
 class BitsetD {
 public:
   class BitR {
@@ -95,13 +89,5 @@ BitsetD operator&(const BitsetD& lhs, const BitsetD& rhs);
 BitsetD operator|(const BitsetD& lhs, const BitsetD& rhs);
 
 BitsetD operator^(const BitsetD& lhs, const BitsetD& rhs);
-
-//namespace std {
-//  inline void swap(BitsetD::BitW&& lhs, BitsetD::BitW&& rhs) {
-//    bool val = lhs.operator bool();
-//    lhs.operator=(rhs.operator bool());
-//    rhs.operator=(val);
-//  }
-//}
 
 #endif
