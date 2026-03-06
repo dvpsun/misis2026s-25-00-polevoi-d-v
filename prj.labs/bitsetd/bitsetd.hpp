@@ -7,49 +7,68 @@
 #include <cstdint>
 #include <vector>
 
+class BitsetD;
+
+//namespace std {
+//  void swap(BitsetD::BitW&& lhs, BitsetD::BitW&& rhs);
+//}
+
 class BitsetD {
 public:
-  class BitProx {
+  class BitR {
+    friend class BitsetD;
   public:
-    BitProx() = delete;
-    BitProx(const BitProx&) = delete;
-    ~BitProx() = default;
-    BitProx& operator=(const BitProx&) = delete;
-    BitProx(BitsetD& bs, const int32_t idx) : bs_(bs), idx_(idx) {}
+    operator bool() const { return val_; }
+  private:
+    BitR() = delete;
+    BitR(const BitR&) = delete;
+    BitR(BitR&&) = delete;
+    BitR(const BitsetD& bs, const int32_t idx) : val_(bs.get(idx)) {}
+    ~BitR() = default;
+    BitR& operator=(const BitR&) = delete;
+    BitR& operator=(BitR&&) = delete;
+  private:
+    bool val_ = false;
+  };
+
+  class BitW {
+    friend class BitsetD;
+  public:
+    void operator=(const BitW& rhs) { bs_.set(idx_, rhs.operator bool()); }
+    //void operator=(BitW&& rhs) { bs_.set(idx_, rhs.operator bool()); }
+    void operator=(const BitR& rhs) { bs_.set(idx_, rhs.operator bool()); }
     operator bool() const { return bs_.get(idx_); }
     void operator=(const bool val) { bs_.set(idx_, val); }
+  private:
+    BitW(BitsetD& bs, const int32_t idx) : bs_(bs), idx_(idx) {}
+    BitW() = delete;
+    BitW(const BitW&) = delete;
+    BitW(BitW&&) = delete;
+    ~BitW() = default;
   private:
     BitsetD& bs_;
     const int32_t idx_ = 0;
   };
-  class BitProxC {
-  public:
-    BitProxC() = delete;
-    BitProxC(const BitProxC&) = delete;
-    ~BitProxC() = default;
-    BitProxC& operator=(const BitProxC&) = delete;
-    BitProxC(const BitsetD& bs, const int32_t idx) : val_(bs.get(idx)) {}
-    operator bool() const { return val_; }
-  private:
-    bool val_ = false;
-  };
+
 public:
   BitsetD() = default;
   BitsetD(const BitsetD& src) = default;
-  BitsetD(const std::uint64_t mask, const int32_t size = 64);
-  BitsetD(const int32_t size, const bool val);
+  BitsetD(BitsetD&& src) = default;
+  BitsetD(const std::uint64_t mask, const int32_t size);
+  BitsetD(const int32_t size, const bool val = false);
   ~BitsetD() = default;
   BitsetD& operator=(const BitsetD& rhs) = default; // TODO:shrink if size small
+  BitsetD& operator=(BitsetD&& rhs) = default;
 
   std::int32_t size() const noexcept { return size_; }
   void resize(const std::int32_t new_size, const bool val = false);
   bool get(const std::int32_t idx) const;
   void set(const std::int32_t idx, const bool val);
 
-  BitProx operator[](const std::int32_t idx) { return BitProx(*this, idx); }
-  BitProxC operator[](const std::int32_t idx) const { return BitProxC(*this, idx); }
+  BitW operator[](const std::int32_t idx)       & { return BitW(*this, idx); }
+  BitR operator[](const std::int32_t idx) const & { return BitR(*this, idx); }
 
-  bool operator==(const BitsetD& rhs) noexcept;
+  bool operator==(const BitsetD& rhs) const noexcept;
 
   BitsetD& invert() noexcept;
   void fill(const bool val) noexcept;
@@ -76,5 +95,13 @@ BitsetD operator&(const BitsetD& lhs, const BitsetD& rhs);
 BitsetD operator|(const BitsetD& lhs, const BitsetD& rhs);
 
 BitsetD operator^(const BitsetD& lhs, const BitsetD& rhs);
+
+//namespace std {
+//  inline void swap(BitsetD::BitW&& lhs, BitsetD::BitW&& rhs) {
+//    bool val = lhs.operator bool();
+//    lhs.operator=(rhs.operator bool());
+//    rhs.operator=(val);
+//  }
+//}
 
 #endif
