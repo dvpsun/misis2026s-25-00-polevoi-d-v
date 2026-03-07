@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(polevoi-d-v-25-00)
+project(misis2026s-25-00-polevoi-d-v)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "cmake")
@@ -16,3 +16,23 @@ include_directories(prj.labs prj.thirdparty)
 
 add_subdirectory(prj.labs)
 add_subdirectory(prj.test)
+
+find_package(Doxygen) # REQUIRED - todo later
+option(BUILD_DOCUMENTATION "Create HTML based documentation (requires Doxygen)" ${DOXYGEN_FOUND})
+
+if (DOXYGEN_FOUND)
+  message("Doxygen build added.")
+  configure_file(
+      "${CMAKE_CURRENT_SOURCE_DIR}/doxyfile.in"
+      "${CMAKE_CURRENT_BINARY_DIR}/doxyfile"
+      @ONLY
+  )
+  doxygen_add_docs(
+      doc # Name of the custom target
+      ${CMAKE_CURRENT_SOURCE_DIR}/prj.labs # Input directory
+      ${CMAKE_CURRENT_SOURCE_DIR}/prj.test # Input directory
+      ALL # Generate documentation for all files
+  )
+  add_custom_target(doxygen_docs ALL DEPENDS doc)
+endif(DOXYGEN_FOUND)
+

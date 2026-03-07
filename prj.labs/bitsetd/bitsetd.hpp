@@ -1,10 +1,12 @@
 // 2026 by Dmitry Polevoy 
+// МИСИС 2026 весна курс ООП
 
 #pragma once
 #ifndef BITSETD_BITSETD_HPP_20260214
 #define BITSETD_BITSETD_HPP_20260214
 
 #include <cstdint>
+#include <string>
 #include <vector>
 
 class BitsetD {
@@ -45,48 +47,138 @@ public:
 
 public:
   BitsetD() = default;
+  
   BitsetD(const BitsetD& src) = default;
+  
   BitsetD(BitsetD&& src) = default;
+  
+  /*!
+  /TODO
+  \param  mask [in] - 
+  \param  size [in] -
+  \throws std::invalid_argument для неположительного size
+  */
   BitsetD(const std::uint64_t mask, const int32_t size);
+  
+  /*!
+  /TODO
+  \param  size [in] -
+  \param  val [in] -
+  \throws std::invalid_argument для неположительного size
+  */
   BitsetD(const int32_t size, const bool val = false);
+  
   ~BitsetD() = default;
+  
   BitsetD& operator=(const BitsetD& rhs) = default; // TODO:shrink if size small
+  
   BitsetD& operator=(BitsetD&& rhs) = default;
 
+  explicit operator std::uint64_t() const;
+  
+  explicit operator std::uint32_t() const { return chunks_[0]; }
+
   std::int32_t size() const noexcept { return size_; }
+  
   void resize(const std::int32_t new_size, const bool val = false);
+  
+  /*!
+  Прочитать значение бита по указанному индексу.
+  \param  idx[in] - индекс бита
+  \return Значение бита
+  \throws std::out_of_range при выходе индекса за пределы допустимого
+  */
   bool get(const std::int32_t idx) const;
+  
+  /*!
+  Установить значение бита по указанному индексу.
+  \param idx[in] - индекс бита
+  \param val[in] - значение бита
+  \throws std::out_of_range при выходе индекса за пределы допустимого
+  */
   void set(const std::int32_t idx, const bool val);
 
   BitW operator[](const std::int32_t idx)       & { return BitW(*this, idx); }
+  
   BitR operator[](const std::int32_t idx) const & { return BitR(*this, idx); }
 
   bool operator==(const BitsetD& rhs) const noexcept;
 
   BitsetD& invert() noexcept;
+  
   void fill(const bool val) noexcept;
-  BitsetD& shift(const std::int32_t idx) noexcept;
+  
+  BitsetD& shift(const std::int32_t s) noexcept;
+  
   BitsetD& operator<<=(const std::int32_t shift);
+  
   BitsetD& operator>>=(const std::int32_t shift);
+  
   BitsetD& operator&=(const BitsetD& rhs);
+  
   BitsetD& operator|=(const BitsetD& rhs);
+  
   BitsetD& operator^=(const BitsetD& rhs);
+
+  enum class StrFormat : int32_t {
+    Bin = 1,      ///< суффикс "b0" и разделители по 4 от младших, пример: b0010'0001
+    BinNoPreSep,  ///< без суффикса и разделителей, пример: 0100001
+    Oct,
+    Dec,
+    Hex,
+    Def = Bin,
+    Default = Def
+  };
+
+  /*!
+  Форматированное текстовое представление, "empty" - для пустого
+  \param fmt [in] - формат представления
+  \param len [in] - минимальная длина строки в символах выбранного формата
+  */
+  std::string to_string(const StrFormat fmt = StrFormat::Def, const int32_t len = 0) const;
+
 private:
-  std::int32_t size_ = 0;
-  std::vector<std::uint32_t> bits_;
+  std::int32_t                size_ = 0;  ///< размер битсета (число доступных бит)
+  std::vector<std::uint32_t>  chunks_;    ///< буфер для хранения бит в упакованном виде
+
+private:
+  // размер элемента буффера в битах (chunk bit size)
+  static constexpr int32_t chunk_bi_s() { return 32; }
+  // размер элемента буффера в байтах (chunk byte size)
+  static constexpr int32_t chunk_by_s() { return chunk_bi_s() / CHAR_BIT; }
+  // минимальный размер буфера для текущего размера битсета (chunk count for current bitset size)
+  int32_t chunks_count() const { return (size_ + chunk_bi_s() - 1) / chunk_bi_s(); }
 };
 
+inline BitsetD::operator std::uint64_t() const {
+  std::uint64_t val = chunks_[0];
+  val <<= 32;
+  val |= chunks_[0];
+  return val;
+}
 
-inline BitsetD operator~(const BitsetD& rhs) noexcept { return BitsetD(rhs).invert(); }
+inline BitsetD operator~(const BitsetD& val) noexcept {
+  return BitsetD(val).invert();
+}
 
-BitsetD operator<<(const BitsetD& lhs, const std::int32_t shift);
+inline BitsetD operator<<(const BitsetD& lhs, const std::int32_t shift) {
+  return BitsetD(lhs).operator<<=(shift); 
+}
 
-BitsetD operator>>(const BitsetD& lhs, const std::int32_t shift);
+inline BitsetD operator>>(const BitsetD& lhs, const std::int32_t shift) {
+  return BitsetD(lhs).operator>>=(shift);
+}
 
-BitsetD operator&(const BitsetD& lhs, const BitsetD& rhs);
+inline BitsetD operator&(const BitsetD& lhs, const BitsetD& rhs) {
+  return BitsetD(lhs).operator&=(rhs);
+}
 
-BitsetD operator|(const BitsetD& lhs, const BitsetD& rhs);
+inline BitsetD operator|(const BitsetD& lhs, const BitsetD& rhs) {
+  return BitsetD(lhs).operator|=(rhs);
+}
 
-BitsetD operator^(const BitsetD& lhs, const BitsetD& rhs);
+inline BitsetD operator^(const BitsetD& lhs, const BitsetD& rhs) {
+  return BitsetD(lhs).operator^=(rhs);
+}
 
 #endif
