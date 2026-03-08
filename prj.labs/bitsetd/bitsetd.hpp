@@ -14,13 +14,13 @@ public:
   class BitR {
     friend class BitsetD;
   public:
+    ~BitR() = default;
     operator bool() const noexcept { return val_; }
   private:
     BitR() = delete;
     BitR(const BitR&) = delete;
     BitR(BitR&&) = delete;
     BitR(const BitsetD& bs, const int32_t idx) : val_(bs.get(idx)) {}
-    ~BitR() = default;
     BitR& operator=(const BitR&) = delete;
     BitR& operator=(BitR&&) = delete;
   private:
@@ -35,11 +35,11 @@ public:
     void operator=(const BitW& rhs) noexcept { operator=(rhs.operator bool()); }
     void operator=(BitW&& rhs) noexcept { operator=(rhs.operator bool()); }
   private:
+    ~BitW() = default;
     BitW(BitsetD& bs, const int32_t idx) : bs_(bs), idx_(idx) {}
     BitW() = delete;
     BitW(const BitW&) = delete;
     BitW(BitW&&) = delete;
-    ~BitW() = default;
   private:
     BitsetD& bs_;
     const int32_t idx_ = 0;

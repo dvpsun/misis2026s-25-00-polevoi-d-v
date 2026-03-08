@@ -15,7 +15,7 @@ TEST_CASE("[bitsetd] - ctor default") {
 //}
 
 TEST_CASE("[bitsetd] - ctor uint64_t") {
-  BitsetD b64(0xAAAABBBBCCCCDDDDUL);
+  BitsetD b64(0xAAAABBBBCCCCDDDDUL, 64);
   CHECK(64 == b64.size());
   BitsetD b33(0xAAAABBBBCCCCDDDDUL, 33);
   CHECK(33 == b33.size());
