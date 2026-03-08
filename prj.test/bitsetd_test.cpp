@@ -35,7 +35,7 @@ TEST_CASE("[bitsetd] - set and get contracts") {
 }
 
 TEST_CASE("[bitsetd] - set and get") {
-  BitsetD b1{ static_cast<uint64_t>(0b1010'0101'1111'0000) };
+  BitsetD b1{ static_cast<uint64_t>(0b1010'0101'1111'0000), 15 };
   CHECK(!b1.get(0));
   CHECK(!b1.get(3));
   CHECK(b1.get(4));
@@ -54,7 +54,7 @@ TEST_CASE("[bitsetd] - set and get") {
 }
 
 TEST_CASE("[bitsetd] - op[]") {
-  BitsetD b64(0xAAAABBBBCCCCDDDDULL);
+  BitsetD b64(0xAAAABBBBCCCCDDDDULL, 64);
   CHECK(b64[0] == b64.get(0));
   for (std::int32_t i = 0; i < b64.size(); i += 1) {
     auto v = b64[i];
@@ -75,10 +75,10 @@ TEST_CASE("[bitsetd] - op[]") {
 TEST_CASE("[bitsetd] - op[] const") {
   uint64_t mask = 1ull;
   const auto bits = 0b0101'1010'1111'0000ull;
-  const BitsetD b1(bits);
+  const BitsetD b1(bits, sizeof(bits) * 8);
   for (int32_t i = 0; i < sizeof(bits) * 8; i += 1) {
     CHECK(b1[i] == bool(bits & mask));
-    std::cout << b1[i] << std::endl;
+    //std::cout << b1[i] << std::endl;
     mask <<= 1;
   }
 }
