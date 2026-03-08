@@ -18,9 +18,9 @@ add_subdirectory(prj.labs)
 add_subdirectory(prj.test)
 
 find_package(Doxygen) # REQUIRED - todo later
-option(BUILD_DOCUMENTATION "Create HTML based documentation (requires Doxygen)" ${DOXYGEN_FOUND})
+option(BUILD_DOCUMENTATION "Create HTML based documentation (requires Doxygen)" 0) # ${DOXYGEN_FOUND})
 
-if (DOXYGEN_FOUND)
+if (BUILD_DOCUMENTATION)
   message("Doxygen build added.")
   configure_file(
       "${CMAKE_CURRENT_SOURCE_DIR}/doxyfile.in"
@@ -34,5 +34,6 @@ if (DOXYGEN_FOUND)
       ALL # Generate documentation for all files
   )
   add_custom_target(doxygen_docs ALL DEPENDS doc)
-endif(DOXYGEN_FOUND)
-
+else(BUILD_DOCUMENTATION)
+  message("DOXYGEN_FOUND=${DOXYGEN_FOUND}")
+endif(BUILD_DOCUMENTATION)
