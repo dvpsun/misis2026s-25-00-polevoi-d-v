@@ -30,12 +30,12 @@ public:
   class BitW {
     friend class BitsetD;
   public:
+    ~BitW() = default;
     operator bool() const noexcept { return bs_.get(idx_); }
     void operator=(const bool val) noexcept { bs_.set(idx_, val); }
     void operator=(const BitW& rhs) noexcept { operator=(rhs.operator bool()); }
     void operator=(BitW&& rhs) noexcept { operator=(rhs.operator bool()); }
   private:
-    ~BitW() = default;
     BitW(BitsetD& bs, const int32_t idx) : bs_(bs), idx_(idx) {}
     BitW() = delete;
     BitW(const BitW&) = delete;
@@ -124,7 +124,6 @@ public:
     Bin = 1,      ///< суффикс "b0" и разделители по 4 от младших, пример: b0010'0001
     BinNoPreSep,  ///< без суффикса и разделителей, пример: 0100001
     Oct,
-    Dec,
     Hex,
     Def = Bin,
     Default = Def
@@ -143,15 +142,15 @@ private:
 
 private:
   // размер элемента буффера в битах (chunk bit size)
-  static constexpr int32_t chunk_bi_s() { return 32; }
+  static const int32_t chunk_bi_s = 32;
   // размер элемента буффера в байтах (chunk byte size)
-  static constexpr int32_t chunk_by_s() { return chunk_bi_s() / CHAR_BIT; }
+  static const int32_t chunk_by_s = 4;
   // минимальный размер буфера для текущего размера битсета (chunk count for current bitset size)
-  int32_t chunks_count() const { return (size_ + chunk_bi_s() - 1) / chunk_bi_s(); }
+  int32_t chunks_count() const { return (size_ + chunk_bi_s - 1) / chunk_bi_s; }
 };
 
 inline BitsetD::operator std::uint64_t() const {
-  std::uint64_t val = chunks_[0];
+  std::uint64_t val = chunk_bi_s < size_ ? chunks_[1] : 0;
   val <<= 32;
   val |= chunks_[0];
   return val;

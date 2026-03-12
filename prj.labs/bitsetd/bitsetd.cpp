@@ -16,8 +16,8 @@ BitsetD::BitsetD(const std::int32_t size, const bool val)
 
 BitsetD::BitsetD(const std::uint64_t mask, const std::int32_t size) 
   : size_(size)
-  , chunks_{ static_cast<uint32_t>(mask ),
-           static_cast<uint32_t>(mask >> chunk_bi_s()) } {
+  , chunks_{static_cast<uint32_t>(mask ),
+            static_cast<uint32_t>(mask >> chunk_bi_s)} {
   chunks_.resize(chunks_count());
 }
 
@@ -48,7 +48,7 @@ bool BitsetD::get(const std::int32_t idx) const {
   if (idx < 0 || size_ <= idx) {
     throw std::out_of_range("BitsetD::get invalid index");
   }
-  return chunks_[idx / chunk_bi_s()] & (UINT32_C(1) << idx % chunk_bi_s());
+  return chunks_[idx / chunk_bi_s] & (UINT32_C(1) << idx % chunk_bi_s);
 }
 
 void BitsetD::set(const std::int32_t idx, const bool val) {
@@ -56,9 +56,9 @@ void BitsetD::set(const std::int32_t idx, const bool val) {
     throw std::out_of_range("BitsetD::set invalid index");
   }
   if (val) {
-    chunks_[idx / chunk_bi_s()] |= UINT32_C(1) << idx % chunk_bi_s();
+    chunks_[idx / chunk_bi_s] |= UINT32_C(1) << idx % chunk_bi_s;
   } else {
-    chunks_[idx / chunk_bi_s()] &= ~(UINT32_C(1) << idx % chunk_bi_s());
+    chunks_[idx / chunk_bi_s] &= ~(UINT32_C(1) << idx % chunk_bi_s);
   }
 }
 
