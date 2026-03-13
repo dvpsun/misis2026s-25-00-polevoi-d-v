@@ -1,0 +1,18 @@
+-- Building for: Visual Studio 17 2022
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- The C compiler identification is MSVC 19.44.35219.0
+-- The CXX compiler identification is MSVC 19.44.35219.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Doxygen: C:/Programs/Strawberry/c/bin/doxygen.exe (found version "1.10.0") found components: doxygen missing components: dot
+-- Configuring done (10.6s)
+-- Generating done (0.2s)
+-- Build files have been written to: D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/build.check

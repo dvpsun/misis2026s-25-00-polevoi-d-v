@@ -1,0 +1,20 @@
+Test project D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/build.check
+    Start 1: doctest_bitsetd
+    Start 2: doctest_arrayd_m
+Could not find executable doctest_arrayd_m
+Looked in the following places:
+doctest_arrayd_m
+doctest_arrayd_m.exe
+Release/doctest_arrayd_m
+Release/doctest_arrayd_m.exe
+Release/doctest_arrayd_m
+Release/doctest_arrayd_m.exe
+1/2 Test #2: doctest_arrayd_m .................***Not Run   0.00 sec
+2/2 Test #1: doctest_bitsetd ..................   Passed    0.11 sec
+
+50% tests passed, 1 tests failed out of 2
+
+Total Test time (real) =   0.17 sec
+
+The following tests FAILED:
+	  2 - doctest_arrayd_m (Not Run)
