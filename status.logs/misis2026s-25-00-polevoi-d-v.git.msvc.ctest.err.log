@@ -1,4 +1,4 @@
-Unable to find executable: doctest_arrayd_m
+Unable to find executable: doctest_bitset_m
 Errors while running CTest
 Output from these tests are in: D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/build.check/Testing/Temporary/LastTest.log
 Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
