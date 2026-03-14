@@ -78,7 +78,15 @@ TEST_CASE("[bitsetd] - op[] const") {
   const BitsetD b1(bits, sizeof(bits) * 8);
   for (int32_t i = 0; i < sizeof(bits) * 8; i += 1) {
     CHECK(b1[i] == bool(bits & mask));
-    //std::cout << b1[i] << std::endl;
     mask <<= 1;
   }
+}
+
+TEST_CASE("[bitsetd] - ctor move") {
+  const auto bits = 0b0101'1010'1111'0000ull;
+  BitsetD s(bits, 59);
+  const BitsetD c(s);
+  const BitsetD r(std::move(s));
+  CHECK(0 == s.size());
+  CHECK(c == r);
 }
