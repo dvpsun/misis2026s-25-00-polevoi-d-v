@@ -4,6 +4,6 @@
 #include <doctest/doctest.h>
 
 TEST_CASE("[arrayr] - ctor default") {
-  ArrayT a;
+  ArrayT<float> a;
   CHECK(0 == a.size());
 }

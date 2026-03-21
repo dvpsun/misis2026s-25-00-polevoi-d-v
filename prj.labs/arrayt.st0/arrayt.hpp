@@ -9,14 +9,10 @@
 #include <stdexcept>
 #include <utility>
 
-template<
-  typename T,                 ///< value type
-  typename S = std::ptrdiff_t ///< size type
->
 class ArrayT {
 public:
-  typedef int32_t S; 
-  typedef float   T; 
+  typedef int32_t S; ///< size type
+  typedef float   T; ///< value type
 public:
   ArrayT() = default;
 
@@ -50,16 +46,16 @@ private:
   T* data_ = nullptr;             //!< буффер
 };
 
-template<typename T, typename S>
-ArrayT<T, S>::ArrayT(const ArrayT& src) 
+inline
+ArrayT::ArrayT(const ArrayT& src) 
   : capacity_(src.size_)
   , size_(capacity_)
   , data_(new T[size_]) {
   std::memcpy(data_, src.data_, size_ * sizeof(*data_));
 }
   
-template<typename T, typename S>
-ArrayT<T, S>::ArrayT(const S size)
+inline
+ArrayT::ArrayT(const S size)
   : capacity_(size)
   , size_(size) { 
   if (size_ <= 0) {
@@ -68,13 +64,13 @@ ArrayT<T, S>::ArrayT(const S size)
   data_ = new T[capacity_]{0.0f};
 }
 
-template<typename T, typename S>
-ArrayT<T, S>::~ArrayT() {
+inline
+ArrayT::~ArrayT() {
   delete[] data_;
 }
   
-template<typename T, typename S>
-ArrayT<T, S>& ArrayT<T, S>::operator=(const ArrayT& rhs) {
+inline
+ArrayT& ArrayT::operator=(const ArrayT& rhs) {
   if (this != & rhs) {
     resize(rhs.size_);
     std::memcpy(data_, rhs.data_, size_ * sizeof(*data_));
@@ -82,8 +78,8 @@ ArrayT<T, S>& ArrayT<T, S>::operator=(const ArrayT& rhs) {
   return *this;
 }
 
-template<typename T, typename S>
-void ArrayT<T, S>::resize(const ArrayT<T, S>::S size) {
+inline
+void ArrayT::resize(const ArrayT::S size) {
   if (size < 0) {
     throw std::invalid_argument("ArrayT::resize - non positive size");
   }
@@ -103,24 +99,24 @@ void ArrayT<T, S>::resize(const ArrayT<T, S>::S size) {
   size_ = size;
 }
   
-template<typename T, typename S>
-ArrayT<T, S>::T& ArrayT<T, S>::operator[](const ArrayT<T, S>::S idx) {
+inline
+ArrayT::T& ArrayT::operator[](const ArrayT::S idx) {
   if (idx < 0 || size_ <= idx) {
     throw std::invalid_argument("ArrayT::operator[] - invalid index");
   }
   return *(data_ + idx);
 }
 
-template<typename T, typename S>
-ArrayT<T, S>::T ArrayT<T, S>::operator[](const ArrayT<T, S>::S idx) const {
+inline
+ArrayT::T ArrayT::operator[](const ArrayT::S idx) const {
   if (idx < 0 || size_ <= idx) {
     throw std::invalid_argument("ArrayT::operator[] - invalid index");
   }
   return data_[idx];
 }
 
-template<typename T, typename S>
-void ArrayT<T, S>::insert(const ArrayT<T, S>::S idx, const ArrayT<T, S>::T val) {
+inline
+void ArrayT::insert(const S idx, const ArrayT::T val) {
   if (idx < 0 || size_ < idx) {
     throw std::invalid_argument("ArrayT::Insert - invalid index");
   }
@@ -131,8 +127,8 @@ void ArrayT<T, S>::insert(const ArrayT<T, S>::S idx, const ArrayT<T, S>::T val) 
   data_[idx] = val;
 }
 
-template<typename T, typename S>
-void ArrayT<T, S>::remove(const ArrayT<T, S>::S idx) {
+inline
+void ArrayT::remove(const ArrayT::S idx) {
   if (idx < 0 || size_ <= idx) {
     throw std::invalid_argument("ArrayT::operator[] - invalid index");
   }
