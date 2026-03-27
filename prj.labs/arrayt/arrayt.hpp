@@ -15,9 +15,6 @@ template<
 >
 class ArrayT {
 public:
-  typedef int32_t S; 
-  typedef float   T; 
-public:
   ArrayT() = default;
 
   ArrayT(const ArrayT&);
@@ -83,7 +80,7 @@ ArrayT<T, S>& ArrayT<T, S>::operator=(const ArrayT& rhs) {
 }
 
 template<typename T, typename S>
-void ArrayT<T, S>::resize(const ArrayT<T, S>::S size) {
+void ArrayT<T, S>::resize(const S size) {
   if (size < 0) {
     throw std::invalid_argument("ArrayT::resize - non positive size");
   }
@@ -104,7 +101,7 @@ void ArrayT<T, S>::resize(const ArrayT<T, S>::S size) {
 }
   
 template<typename T, typename S>
-ArrayT<T, S>::T& ArrayT<T, S>::operator[](const ArrayT<T, S>::S idx) {
+T& ArrayT<T, S>::operator[](const S idx) {
   if (idx < 0 || size_ <= idx) {
     throw std::invalid_argument("ArrayT::operator[] - invalid index");
   }
@@ -112,7 +109,7 @@ ArrayT<T, S>::T& ArrayT<T, S>::operator[](const ArrayT<T, S>::S idx) {
 }
 
 template<typename T, typename S>
-ArrayT<T, S>::T ArrayT<T, S>::operator[](const ArrayT<T, S>::S idx) const {
+T ArrayT<T, S>::operator[](const S idx) const {
   if (idx < 0 || size_ <= idx) {
     throw std::invalid_argument("ArrayT::operator[] - invalid index");
   }
@@ -120,7 +117,7 @@ ArrayT<T, S>::T ArrayT<T, S>::operator[](const ArrayT<T, S>::S idx) const {
 }
 
 template<typename T, typename S>
-void ArrayT<T, S>::insert(const ArrayT<T, S>::S idx, const ArrayT<T, S>::T val) {
+void ArrayT<T, S>::insert(const S idx, const T val) {
   if (idx < 0 || size_ < idx) {
     throw std::invalid_argument("ArrayT::Insert - invalid index");
   }
@@ -132,7 +129,7 @@ void ArrayT<T, S>::insert(const ArrayT<T, S>::S idx, const ArrayT<T, S>::T val) 
 }
 
 template<typename T, typename S>
-void ArrayT<T, S>::remove(const ArrayT<T, S>::S idx) {
+void ArrayT<T, S>::remove(const S idx) {
   if (idx < 0 || size_ <= idx) {
     throw std::invalid_argument("ArrayT::operator[] - invalid index");
   }
