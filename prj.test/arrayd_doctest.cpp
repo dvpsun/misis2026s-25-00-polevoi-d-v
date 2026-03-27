@@ -1,6 +1,6 @@
-// 2026 by Polevoi Dmitry under Unlicense
+// 2025 by Polevoi Dmitry under Unlicense
 
-#include <arrayt/arrayt.hpp>
+#include <arrayd/arrayd.hpp>
 #include <climits>
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
@@ -8,11 +8,8 @@
 
 static const float eps = std::numeric_limits<float>::epsilon() * 2;
 
-using ArrayD = ArrayT<float>;
-
-TEST_CASE("[arrayr] - ctor default") {
-  ArrayT<float> a;
-  CHECK(0 == a.size());
+TEST_CASE("[arrayd] - ctor") {
+  CHECK(ArrayD().size() == 0);
 }
 
 TEST_CASE("[arrayd] - ctor copy") {
