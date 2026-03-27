@@ -8,15 +8,27 @@
 
 static const float eps = std::numeric_limits<float>::epsilon() * 2;
 
-using ArrayD = ArrayT<float>;
+template<typename T>
+bool compre_eq(const T& lhs, const T& rhs) {
+  return lhs == rhs;
+}
 
-TEST_CASE("[arrayr] - ctor default") {
+template<>
+bool compre_eq<float>(const float& lhs, const float& rhs) {
+  return doctest::Approx(lhs).epsilon(eps) == rhs;
+}
+
+TEST_CASE_TEMPLATE("[arrayr] - ctor default", T, int, int32_t, float, std::string) {
   ArrayT<float> a;
   CHECK(0 == a.size());
 }
 
-TEST_CASE("[arrayd] - ctor copy") {
-  const int size = 10;
+using ArrayD = ArrayT<float>;
+
+#define TYPES int, int32_t, float, std::string
+
+TEST_CASE_TEMPLATE("[arrayd] - ctor copy", T, TYPES) {
+    const int size = 10;
   ArrayD src(size);
   for (int i = 0; i < size; i += 1) {
     src[i] = i;
@@ -25,7 +37,7 @@ TEST_CASE("[arrayd] - ctor copy") {
   CHECK(tgt.size() == size);
   bool is_equal = true;
   for (int i = 0; i < size && is_equal; i += 1) {
-    is_equal = doctest::Approx(src[i]).epsilon(eps) == tgt[i];
+    is_equal = compre_eq(src[i], tgt[i]);
   }
   CHECK(is_equal);
   for (int i = 0; i < size; i += 1) {
@@ -33,7 +45,7 @@ TEST_CASE("[arrayd] - ctor copy") {
   }
   is_equal = true;
   for (int i = 0; i < size && is_equal; i += 1) {
-    is_equal = doctest::Approx(src[i]).epsilon(eps) == tgt[i];
+    is_equal = compre_eq(src[i], tgt[i]);
   }
   CHECK(!is_equal);
 }
