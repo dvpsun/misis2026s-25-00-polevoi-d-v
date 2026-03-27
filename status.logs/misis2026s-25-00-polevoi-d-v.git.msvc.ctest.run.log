@@ -1,6 +1,10 @@
 Test project D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/build.check
-    Start 1: doctest_bitsetd
-    Start 2: doctest_bitsetd_m
+    Start 1: doctest_arrayd
+    Start 2: doctest_arrayt
+    Start 3: doctest_complex
+    Start 4: doctest_complex_io
+    Start 5: doctest_bitsetd
+    Start 6: doctest_bitsetd_m
 Could not find executable doctest_bitset_m
 Looked in the following places:
 doctest_bitset_m
@@ -9,12 +13,18 @@ Release/doctest_bitset_m
 Release/doctest_bitset_m.exe
 Release/doctest_bitset_m
 Release/doctest_bitset_m.exe
-1/2 Test #2: doctest_bitsetd_m ................***Not Run   0.00 sec
-2/2 Test #1: doctest_bitsetd ..................   Passed    0.10 sec
+1/6 Test #6: doctest_bitsetd_m ................***Not Run   0.00 sec
+2/6 Test #1: doctest_arrayd ...................   Passed    0.28 sec
+3/6 Test #2: doctest_arrayt ...................   Passed    0.22 sec
+4/6 Test #3: doctest_complex ..................***Failed    0.16 sec
+5/6 Test #5: doctest_bitsetd ..................   Passed    0.04 sec
+6/6 Test #4: doctest_complex_io ...............***Failed    0.10 sec
 
-50% tests passed, 1 tests failed out of 2
+50% tests passed, 3 tests failed out of 6
 
-Total Test time (real) =   0.19 sec
+Total Test time (real) =   0.32 sec
 
 The following tests FAILED:
-	  2 - doctest_bitsetd_m (Not Run)
+	  3 - doctest_complex (Failed)
+	  4 - doctest_complex_io (Failed)
+	  6 - doctest_bitsetd_m (Not Run)
