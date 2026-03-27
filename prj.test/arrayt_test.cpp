@@ -28,7 +28,7 @@ using ArrayD = ArrayT<float>;
 #define TYPES int, int32_t, float, std::string
 
 TEST_CASE_TEMPLATE("[arrayd] - ctor copy", T, TYPES) {
-    const int size = 10;
+  const int size = 10;
   ArrayD src(size);
   for (int i = 0; i < size; i += 1) {
     src[i] = i;
