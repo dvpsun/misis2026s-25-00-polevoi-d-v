@@ -52,7 +52,7 @@ ArrayT<T, S>::ArrayT(const ArrayT& src)
   : capacity_(src.size_)
   , size_(capacity_)
   , data_(new T[size_]) {
-  std::memcpy(data_, src.data_, size_ * sizeof(*data_));
+  std::copy(src.data_, src.data_ + size_, data_);
 }
   
 template<typename T, typename S>
@@ -62,7 +62,7 @@ ArrayT<T, S>::ArrayT(const S size)
   if (size_ <= 0) {
     throw std::invalid_argument("ArrayT::ArrayT - non positive size");
   }
-  data_ = new T[capacity_]{0.0f};
+  data_ = new T[capacity_]{};
 }
 
 template<typename T, typename S>
@@ -74,7 +74,7 @@ template<typename T, typename S>
 ArrayT<T, S>& ArrayT<T, S>::operator=(const ArrayT& rhs) {
   if (this != & rhs) {
     resize(rhs.size_);
-    std::memcpy(data_, rhs.data_, size_ * sizeof(*data_));
+    std::copy(rhs.data_, rhs.data_ + size_, data_);
   }
   return *this;
 }
@@ -85,16 +85,16 @@ void ArrayT<T, S>::resize(const S size) {
     throw std::invalid_argument("ArrayT::resize - non positive size");
   }
   if (capacity_ < size) {
-    auto data = new T[size]{0.0};
+    auto data = new T[size]{};
     if (0 < size_) {
-      std::memcpy(data, data_, size_ * sizeof(*data_));
+      std::copy(data_, data_ + size_, data);
     }
     std::swap(data_, data);
     delete[] data;
     capacity_ = size;
   } else {
     if (size_ < size) {
-      std::memset(data_ + size_, 0, (size - size_) * sizeof(*data_));
+      std::fill(data_, data_ + size, T{});
     }
   }
   size_ = size;
