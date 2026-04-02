@@ -94,7 +94,7 @@ void ArrayT<T, S>::resize(const S size) {
     capacity_ = size;
   } else {
     if (size_ < size) {
-      std::fill(data_, data_ + size, T{});
+      std::fill(data_ + size_, data_ + size, T{});
     }
   }
   size_ = size;
