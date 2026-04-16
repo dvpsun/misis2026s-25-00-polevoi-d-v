@@ -6,6 +6,7 @@
 #define BITSETD_BITSETD_HPP_20260214
 
 #include <cstdint>
+#include <iosfwd>
 #include <string>
 #include <vector>
 
@@ -135,6 +136,10 @@ public:
   \param len [in] - минимальная длина строки в символах выбранного формата
   */
   std::string to_string(const StrFormat fmt = StrFormat::Def, const int32_t len = 0) const;
+  
+  std::ostream& write_to(std::ostream& s) const { return s; }
+  
+  std::istream& read_from(std::istream& s) { return s; }
 
 private:
   std::int32_t                size_ = 0;  ///< размер битсета (число доступных бит)
