@@ -3,25 +3,7 @@ Test project D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/build.
       Start  2: doctest_arrayt
       Start  3: doctest_bitsetd
       Start  4: doctest_bitsetd_io
-Could not find executable doctest_bitset_io
-Looked in the following places:
-doctest_bitset_io
-doctest_bitset_io.exe
-Release/doctest_bitset_io
-Release/doctest_bitset_io.exe
-Release/doctest_bitset_io
-Release/doctest_bitset_io.exe
- 1/13 Test  #4: doctest_bitsetd_io ...............***Not Run   0.00 sec
       Start  5: doctest_bitsetd_m
-Could not find executable doctest_bitset_m
-Looked in the following places:
-doctest_bitset_m
-doctest_bitset_m.exe
-Release/doctest_bitset_m
-Release/doctest_bitset_m.exe
-Release/doctest_bitset_m
-Release/doctest_bitset_m.exe
- 2/13 Test  #5: doctest_bitsetd_m ................***Not Run   0.00 sec
       Start  6: doctest_complex
       Start  7: doctest_complex_io
       Start  8: doctest_queuea
@@ -33,7 +15,7 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/doctest_queuea.exe.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuea.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuea.exe.exe
- 3/13 Test  #8: doctest_queuea ...................***Not Run   0.00 sec
+ 1/13 Test  #8: doctest_queuea ...................***Not Run   0.00 sec
       Start  9: doctest_queuea_m
 Could not find executable D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuea_m.exe
 Looked in the following places:
@@ -43,7 +25,7 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/doctest_queuea_m.exe.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuea_m.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuea_m.exe.exe
- 4/13 Test  #9: doctest_queuea_m .................***Not Run   0.00 sec
+ 2/13 Test  #9: doctest_queuea_m .................***Not Run   0.00 sec
       Start 10: doctest_queuel
 Could not find executable D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuel.exe
 Looked in the following places:
@@ -53,7 +35,7 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/doctest_queuel.exe.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuel.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuel.exe.exe
- 5/13 Test #10: doctest_queuel ...................***Not Run   0.00 sec
+ 3/13 Test #10: doctest_queuel ...................***Not Run   0.00 sec
       Start 11: doctest_queuel_m
 Could not find executable D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuel_m.exe
 Looked in the following places:
@@ -63,7 +45,7 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/doctest_queuel_m.exe.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuel_m.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_queuel_m.exe.exe
- 6/13 Test #11: doctest_queuel_m .................***Not Run   0.00 sec
+ 4/13 Test #11: doctest_queuel_m .................***Not Run   0.00 sec
       Start 12: doctest_rational
 Could not find executable D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational.exe
 Looked in the following places:
@@ -73,7 +55,7 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/doctest_rational.exe.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational.exe.exe
- 7/13 Test #12: doctest_rational .................***Not Run   0.00 sec
+ 5/13 Test #12: doctest_rational .................***Not Run   0.00 sec
       Start 13: doctest_rational_io
 Could not find executable D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational_io.exe
 Looked in the following places:
@@ -83,20 +65,21 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/doctest_rational_io.exe.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational_io.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational_io.exe.exe
- 8/13 Test #13: doctest_rational_io ..............***Not Run   0.00 sec
- 9/13 Test  #1: doctest_arrayd ...................   Passed    0.26 sec
-10/13 Test  #2: doctest_arrayt ...................   Passed    0.21 sec
-11/13 Test  #3: doctest_bitsetd ..................   Passed    0.15 sec
+ 6/13 Test #13: doctest_rational_io ..............***Not Run   0.00 sec
+ 7/13 Test  #1: doctest_arrayd ...................   Passed    0.43 sec
+ 8/13 Test  #2: doctest_arrayt ...................   Passed    0.36 sec
+ 9/13 Test  #3: doctest_bitsetd ..................   Passed    0.30 sec
+10/13 Test  #4: doctest_bitsetd_io ...............   Passed    0.23 sec
+11/13 Test  #5: doctest_bitsetd_m ................***Failed    0.17 sec
 12/13 Test  #6: doctest_complex ..................***Failed    0.10 sec
-13/13 Test  #7: doctest_complex_io ...............***Failed    0.04 sec
+13/13 Test  #7: doctest_complex_io ...............***Failed    0.05 sec
 
-23% tests passed, 10 tests failed out of 13
+31% tests passed, 9 tests failed out of 13
 
-Total Test time (real) =   0.36 sec
+Total Test time (real) =   0.55 sec
 
 The following tests FAILED:
-	  4 - doctest_bitsetd_io (Not Run)
-	  5 - doctest_bitsetd_m (Not Run)
+	  5 - doctest_bitsetd_m (Failed)
 	  6 - doctest_complex (Failed)
 	  7 - doctest_complex_io (Failed)
 	  8 - doctest_queuea (Not Run)

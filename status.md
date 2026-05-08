@@ -1,4 +1,4 @@
-STAMP: 20260508-120605
+STAMP: 20260508-132555
 ERROR: file prj.labs/queuea/queuea.hpp is absent
 ERROR: file prj.labs/queuel/queuel.hpp is absent
 ERROR: file prj.test/queuea_test.cpp is absent
