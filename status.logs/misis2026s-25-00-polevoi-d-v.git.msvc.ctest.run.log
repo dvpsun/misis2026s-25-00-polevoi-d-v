@@ -66,17 +66,17 @@ D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/Release/d
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational_io.exe
 Release/D:/projects/misis2026-check/misis2026s-25-00-polevoi-d-v.git/bin.check/doctest_rational_io.exe.exe
  6/13 Test #13: doctest_rational_io ..............***Not Run   0.00 sec
- 7/13 Test  #1: doctest_arrayd ...................   Passed    0.66 sec
- 8/13 Test  #2: doctest_arrayt ...................***Failed    0.55 sec
- 9/13 Test  #3: doctest_bitsetd ..................   Passed    0.46 sec
-10/13 Test  #4: doctest_bitsetd_io ...............   Passed    0.36 sec
-11/13 Test  #5: doctest_bitsetd_m ................***Failed    0.27 sec
-12/13 Test  #6: doctest_complex ..................***Failed    0.18 sec
+ 7/13 Test  #1: doctest_arrayd ...................   Passed    0.64 sec
+ 8/13 Test  #2: doctest_arrayt ...................***Failed    0.56 sec
+ 9/13 Test  #3: doctest_bitsetd ..................   Passed    0.49 sec
+10/13 Test  #4: doctest_bitsetd_io ...............   Passed    0.40 sec
+11/13 Test  #5: doctest_bitsetd_m ................***Failed    0.31 sec
+12/13 Test  #6: doctest_complex ..................***Failed    0.21 sec
 13/13 Test  #7: doctest_complex_io ...............***Failed    0.10 sec
 
 23% tests passed, 10 tests failed out of 13
 
-Total Test time (real) =   0.87 sec
+Total Test time (real) =   0.70 sec
 
 The following tests FAILED:
 	  2 - doctest_arrayt (Failed)
