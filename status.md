@@ -1,4 +1,4 @@
-STAMP: 20260604-082004
+STAMP: 20260604-091335
 ERROR: file prj.test/queuea_test.cpp is absent
 ERROR: file prj.test/queuel_test.cpp is absent
 ERROR: file prj.test/jaggeda_test.cpp is absent
@@ -7,7 +7,7 @@ OK: CMake generator successed
 STATUS: lab bitsetd - test-ok
 STATUS: lab bitsetd_m - test-failed
 STATUS: lab bitsetd_io - test-ok
-STATUS: lab arrayt - test-failed
+STATUS: lab arrayt - test-ok
 STATUS: lab arrayd - test-ok
 ERROR: lab queuea - test build failed
 ERROR: lab queuea_m - test build failed
