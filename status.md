@@ -1,7 +1,4 @@
-STAMP: 20260528-093259
-ERROR: file prj.labs/jaggeda/jaggeda.hpp is absent
-ERROR: file prj.labs/queuea/queuea.hpp is absent
-ERROR: file prj.labs/queuel/queuel.hpp is absent
+STAMP: 20260604-082004
 ERROR: file prj.test/queuea_test.cpp is absent
 ERROR: file prj.test/queuel_test.cpp is absent
 ERROR: file prj.test/jaggeda_test.cpp is absent
